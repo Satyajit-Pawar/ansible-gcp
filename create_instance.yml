@@ -27,5 +27,5 @@
               - type: ONE_TO_ONE_NAT
                 name: "External NAT"
         auth_kind: serviceaccount
-        service_account_file: "/var/lib/jenkins/gcp-key.json"
+        service_account_file: "{{ lookup('env','GOOGLE_APPLICATION_CREDENTIALS') }}"
         state: present
