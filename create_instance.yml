@@ -9,10 +9,10 @@
     zone: "asia-south1-a"
 
   tasks:
-    - name: Launch GCP VM Instance
+    - name: Create GCP VM instance
       google.cloud.gcp_compute_instance:
-        name: ansible-instance
-        machine_type: e2-micro
+        name: "ansible-instance"
+        machine_type: "e2-micro"
         zone: "{{ zone }}"
         project: "{{ project_id }}"
         disks:
@@ -25,6 +25,7 @@
               selfLink: "global/networks/default"
             access_configs:
               - type: ONE_TO_ONE_NAT
+                name: "External NAT"
         auth_kind: serviceaccount
         service_account_file: "/var/lib/jenkins/gcp-key.json"
         state: present
