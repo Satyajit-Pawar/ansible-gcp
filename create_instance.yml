@@ -1,12 +1,15 @@
 ---
-- name: Create GCP VM Instance
+- name: Create GCP VM Instance using Ansible
   hosts: localhost
   connection: local
+  gather_facts: yes
+
   vars:
     project_id: "multicloudproject-460511"
     zone: "asia-south1-a"
+
   tasks:
-    - name: Launch GCP VM
+    - name: Launch GCP VM Instance
       gcp_compute_instance:
         name: ansible-instance
         machine_type: e2-micro
@@ -14,11 +17,11 @@
         disks:
           - auto_delete: true
             boot: true
-            initializeParams:
-              sourceImage: "projects/debian-cloud/global/images/family/debian-11"
-        networkInterfaces:
+            initialize_params:
+              source_image: "projects/debian-cloud/global/images/family/debian-11"
+        network_interfaces:
           - network: default
-            accessConfigs:
+            access_configs:
               - name: External NAT
                 type: ONE_TO_ONE_NAT
         project: "{{ project_id }}"
