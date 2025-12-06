@@ -7,7 +7,6 @@
   vars:
     project_id: "multicloudproject-460511"
     zone: "asia-south1-a"
-    region: "asia-south1"
 
   tasks:
     - name: Launch GCP VM Instance
@@ -22,7 +21,8 @@
             initialize_params:
               source_image: "projects/debian-cloud/global/images/family/debian-11"
         network_interfaces:
-          - network: "default"
+          - network:
+              selfLink: "global/networks/default"
             access_configs:
               - type: ONE_TO_ONE_NAT
         auth_kind: serviceaccount
